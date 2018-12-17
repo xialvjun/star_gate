@@ -1,48 +1,157 @@
-
 <!DOCTYPE html>
 
 <html>
-<head>
- <title>New ZeroNet site!</title>
- <meta charset="utf-8">
- <meta http-equiv="content-type" content="text/html; charset=utf-8" />
- <base href="" target="_top" id="base">
- <script>base.href = document.location.href.replace("/media", "").replace("index.html", "").replace(/[&?]wrapper=False/, "").replace(/[&?]wrapper_nonce=[A-Za-z0-9]+/, "")</script>
-</head>
-<body>
+  <head>
+    <title>StarGate</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <base href="" target="_top" id="base" />
+    <style>
+      * {
+        font-family: monospace;
+        line-height: 1.5em;
+        font-size: 13px;
+        vertical-align: middle;
+      }
+      body {
+        background-color: white;
+      }
+      input#message {
+        padding: 5px;
+        width: 50%;
+      }
+      input#send {
+        height: 34px;
+        margin-left: -2px;
+      }
+      ul {
+        padding: 0px;
+      }
+      li {
+        list-style-type: none;
+        border-top: 1px solid #eee;
+        padding: 5px 0px;
+      }
+      li:nth-child(odd) {
+        background-color: #f9fafd;
+      }
+      li b {
+        color: #3f51b5;
+      }
+    </style>
+    <script>
+      base.href = document.location.href
+        .replace("/media", "")
+        .replace("index.html", "")
+        .replace(/[&?]wrapper=False/, "")
+        .replace(/[&?]wrapper_nonce=[A-Za-z0-9]+/, "");
+    </script>
+  </head>
+  <body>
+    <a href="#Select+user" id="select_user" onclick="return page.selectUser()">Select user</a>:
+    <input type="text" id="message" onkeypress="if (event.keyCode == 13) page.sendMessage()" />
+    <input type="button" id="send" value="Send!" onclick="return page.sendMessage()" />
+    <ul id="messages">
+      <li>Welcome to ZeroChat!</li>
+    </ul>
 
-<div id="out"></div>
+    <script type="text/javascript" src="js/ZeroFrame.js"></script>
 
-<script type="text/javascript" src="js/ZeroFrame.js"></script>
+    <script>
+      class ZeroChat extends ZeroFrame {
+        addMessage(username, message) {
+          var message_escaped = message.replace(/</g, "&lt;").replace(/>/g, "&gt;"); // Escape html tags in the message
+          this.messages.innerHTML += "<li><b>" + username + "</b>: " + message_escaped + "</li>";
+        }
 
-<script>
+        sendMessage() {
+          if (!this.site_info.cert_user_id) {
+            // No account selected, display error
+            this.cmd("wrapperNotification", ["info", "Please, select your account."]);
+            return false;
+          }
 
-class Page extends ZeroFrame {
-	setSiteInfo(site_info) {
-		var out = document.getElementById("out")
-		out.innerHTML =
-			"Page address: " + site_info.address +
-			"<br>- Peers: " + site_info.peers +
-			"<br>- Size: " + site_info.settings.size +
-			"<br>- Modified: " + (new Date(site_info.content.modified*1000))
-	}
+          // This is our data file path
+          var data_inner_path = "data/users/" + this.site_info.auth_address + "/data.json";
+          var content_inner_path = "data/users/" + this.site_info.auth_address + "/content.json";
 
-	onOpenWebsocket() {
-		this.cmd("siteInfo", [], function(site_info) {
-			page.setSiteInfo(site_info)
-		})
-	}
+          // Load our current messages
+          this.cmd("fileGet", { inner_path: data_inner_path, required: false }, data => {
+            if (data)
+              // Parse current data file
+              data = JSON.parse(data);
+            // Not exists yet, use default data
+            else data = { hashes: {} };
 
-	onRequest(cmd, message) {
-		if (cmd == "setSiteInfo")
-			this.setSiteInfo(message.params)
-		else
-			this.log("Unknown incoming message:", cmd)
-	}
-}
-page = new Page()
+            // Add the new message to data
+            var hash_obj = JSON.parse(document.getElementById("message").value);
+            data.hashes[hash_obj.hash] = {
+              ...hash_obj,
+              created_at: Date.now()
+            };
 
-</script>
+            // Encode data array to utf8 json text
+            var json_raw = unescape(encodeURIComponent(JSON.stringify(data, undefined, "\t")));
 
-</body>
+            // Write file to disk
+            this.cmd("fileWrite", [data_inner_path, btoa(json_raw)], res => {
+              if (res == "ok") {
+                // Reset the message input
+                document.getElementById("message").value = "";
+                // Sign the changed file in our user's directory
+                this.cmd("siteSign", { inner_path: content_inner_path }, res => {
+                  this.loadMessages(); // Reload messages
+                  // Publish to other users
+                  this.cmd("sitePublish", { inner_path: content_inner_path, sign: false });
+                });
+              } else {
+                this.cmd("wrapperNotification", ["error", "File write error: #{res}"]);
+              }
+            });
+          });
+
+          return false;
+        }
+
+        selectUser() {
+          this.cmd("certSelect", { accepted_domains: ["zeroid.bit"] });
+          return false;
+        }
+
+        loadMessages() {
+          this.cmd("dbQuery", ["SELECT * FROM hashes LEFT JOIN json USING (json_id) ORDER BY created_at DESC"], hashes => {
+            document.getElementById("messages").innerHTML = ""; // Always start with empty messages
+            for (var i = 0; i < hashes.length; i++) {
+              this.addMessage(hashes[i].cert_user_id, JSON.stringify(hashes[i]));
+            }
+          });
+        }
+
+        onRequest(cmd, message) {
+          if (cmd == "setSiteInfo") {
+            if (message.params.cert_user_id) document.getElementById("select_user").innerHTML = message.params.cert_user_id;
+            else document.getElementById("select_user").innerHTML = "Select user";
+            this.site_info = message.params; // Save site info data to allow access it later
+
+            // Reload messages if new file arrives
+            if (message.params.event[0] == "file_done") this.loadMessages();
+          }
+        }
+
+        onOpenWebsocket() {
+          this.messages = document.getElementById("messages");
+          this.addMessage("System", "Ready to call ZeroFrame API!");
+
+          this.cmd("siteInfo", {}, site_info => {
+            if (site_info.cert_user_id) document.getElementById("select_user").innerText = site_info.cert_user_id;
+            this.site_info = site_info;
+          });
+
+          this.loadMessages();
+        }
+      }
+
+      page = new ZeroChat();
+    </script>
+  </body>
 </html>

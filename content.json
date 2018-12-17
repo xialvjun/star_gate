@@ -4,27 +4,37 @@
  "background-color": "#FFF",
  "clone_root": "template-new",
  "cloned_from": "1HeLLo4uzjaLetFx6NH3PMwFP3qbRbTf3D",
- "description": "",
+ "description": "An IPFS Resources Site.",
  "files": {
+  "dbschema.json": {
+   "sha512": "e27e6a98d53aaa9efb0ba3eff3f6a60f2d88011b6fcb385e6bd8e336fbecd50a",
+   "size": 932
+  },
   "index.html": {
-   "sha512": "542f7724432a22ceb8821b4241af4d36cfd81e101b72d425c6c59e148856537e",
-   "size": 1114
+   "sha512": "5855f5ae45aa5ea9eefcef10f7832719d7700527c4d95b78f032cf8ef9a3c27e",
+   "size": 5359
   },
   "js/ZeroFrame.js": {
    "sha512": "42125c7aa72496455e044e3fd940e0f05db86824c781381edb7a70f71a5f0882",
    "size": 3370
   }
  },
- "ignore": "",
+ "ignore": ".git/.*|data/.*|stargate/.*",
+ "includes": {
+  "data/users/content.json": {
+   "signers": [],
+   "signers_required": 1
+  }
+ },
  "inner_path": "content.json",
- "modified": 1544810307,
+ "modified": 1544960386,
  "postmessage_nonce_security": true,
  "signers_sign": "HODgkRAeXMJTJCa76GDxOak8oFKVmWzQJJ5WjzB8g00VMgcAhB4NCiNowY7Rh8HQnhAjffrRcw5ILQB5QRV8smE=",
  "signs": {
-  "17zvBL3FBNDSV5x7EoGv2LdFe473iw9dVZ": "HEJf4Z8Nh+dh8HEQldJNsvN1BjlrdHJSTjrOQ8uSn6MSLZmvw5JbDW9c33ZN9+9He18XZvPEgpajUiOFC8cyDGs="
+  "17zvBL3FBNDSV5x7EoGv2LdFe473iw9dVZ": "G4wMlg/pTjsx+IUozUrSTUthvICZrfRSTHnUY0H26ZS7afzc59DshkOzx0VR0tbGebjpKaEx77T0Lpg1t11Kl1g="
  },
  "signs_required": 1,
- "title": "my new site",
+ "title": "StarGate",
  "translate": ["js/all.js"],
  "zeronet_version": "0.6.4"
 }
