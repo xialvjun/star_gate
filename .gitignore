@@ -4,3 +4,6 @@
 !/data/users
 /data/users/*
 !/data/users/content.json
+
+index.html
+static/

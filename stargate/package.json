@@ -2,14 +2,20 @@
   "name": "stargate",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1"
+    "@xialvjun/create-react-style": "^0.8.3",
+    "@xialvjun/is.js": "^0.0.3",
+    "@xialvjun/react-element": "^0.0.9",
+    "react": "16.7.0-alpha.2",
+    "react-dom": "16.7.0-alpha.2",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "yarn build && rimraf build/**/*.map build/*-* ../static && cp -r build/* ../",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

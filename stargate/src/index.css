@@ -12,3 +12,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+a.active {
+  color: #009688;
+  text-decoration: underline;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+}

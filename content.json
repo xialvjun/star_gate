@@ -7,16 +7,48 @@
  "description": "An IPFS Resources Site.",
  "files": {
   "dbschema.json": {
-   "sha512": "599b41f8acd3f28ab7ad6f5d90e8c5cc8798326086abd6f69ce19ee17c52e3a1",
-   "size": 1012
+   "sha512": "fa82de8513f2d80f1d23608ca4c5d84ca197f2f35799cbafd6bacfb67a7073ae",
+   "size": 1006
+  },
+  "favicon.ico": {
+   "sha512": "ccfa917ff6e503f4c50dc8f2817b837bb3de1107449b663c8ad250b4e03fbf34",
+   "size": 1150
   },
   "index.html": {
-   "sha512": "20b45df1508665ebd2e7af4d52d92274c9f8417e4cc3decf6a86f47215b52479",
-   "size": 5398
+   "sha512": "9cbdc2459b2e262cd0d25ca672e2de0d65b8a18377e86e44680e68a7a99d5296",
+   "size": 2067
   },
-  "js/ZeroFrame.js": {
-   "sha512": "42125c7aa72496455e044e3fd940e0f05db86824c781381edb7a70f71a5f0882",
-   "size": 3370
+  "manifest.json": {
+   "sha512": "bea380fcb94811e5c93661342a08b5bfee89656fc0ac869c5427a216b8b54f47",
+   "size": 306
+  },
+  "static/css/main.86112947.chunk.css": {
+   "sha512": "7cc79f5126304dc3ee5cf5b89bc2b113fdb79df9d3de098ca93da7d0affffd3e",
+   "size": 1608
+  },
+  "static/js/1.1fa4a6e3.chunk.js": {
+   "sha512": "2d1a8fbe7b21e78850fff986a76c40cf7d52ed25e0db47a55ecba79e005d1f3b",
+   "size": 175716
+  },
+  "static/js/main.b55d9cbc.chunk.js": {
+   "sha512": "e79667c2db486fe23ef2f72929bebb60bd7a82f5a8ccd5a635879d1b6d76a6ee",
+   "size": 14393
+  },
+  "static/media/icomoon.72bf4537.eot": {
+   "sha512": "80f0c9d0135da75d358440844547f3b857705a358d00841a04fe43fb9584a972",
+   "size": 2836
+  },
+  "static/media/icomoon.872d24cd.ttf": {
+   "sha512": "1de0ea7ba7093d3a9aa807ce7c9d47d02222daa0b45f70bdaa906adf8e3451ca",
+   "size": 2672
+  },
+  "static/media/icomoon.bbcec7ad.svg": {
+   "sha512": "96b225575415fc9ef9a83218511455d4f91b192fa41115e582c126bf793d62e5",
+   "size": 5247
+  },
+  "static/media/icomoon.de3f0684.woff": {
+   "sha512": "a02ca71c0ec99ceeb8c625709fffe9f1ef6c388943f53dd01bae263af01885cb",
+   "size": 2748
   }
  },
  "ignore": ".git/.*|data/.*|stargate/.*",
@@ -27,11 +59,11 @@
   }
  },
  "inner_path": "content.json",
- "modified": 1545564790,
+ "modified": 1547050541,
  "postmessage_nonce_security": true,
  "signers_sign": "HODgkRAeXMJTJCa76GDxOak8oFKVmWzQJJ5WjzB8g00VMgcAhB4NCiNowY7Rh8HQnhAjffrRcw5ILQB5QRV8smE=",
  "signs": {
-  "17zvBL3FBNDSV5x7EoGv2LdFe473iw9dVZ": "HOh6Mntv4gtnqCJg66Bp67e7tosvmVF2wE0YotCAdC7VOFtvYjcpU/sDGmu3sDpmfJCWS+YC7pURNCMoDHZPvLo="
+  "17zvBL3FBNDSV5x7EoGv2LdFe473iw9dVZ": "G57Hi2Ue2d++CjPPJtkj26Tj5o12LwSEOgFZTg9++Hj/GQBB9qeGIFJHp3M/DrCGkPz/qhKDku1taSrMK+U5JgQ="
  },
  "signs_required": 1,
  "title": "StarGate",

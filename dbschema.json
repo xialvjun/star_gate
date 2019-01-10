@@ -28,11 +28,11 @@
     "hashes": {
       "cols": [
         ["hash", "TEXT"],
-        ["is_directory", "BOOLEAN"],
+        ["is_dir", "BOOLEAN"],
         ["name", "TEXT"],
         ["desc", "TEXT"],
         ["series", "TEXT"],
-        ["created_at", "INTEGER"],
+        ["updated_at", "INTEGER"],
         ["json_id", "INTEGER REFERENCES json (json_id)"]
       ],
       "indexes": ["CREATE UNIQUE INDEX message_key ON message(json_id, hash)"],
