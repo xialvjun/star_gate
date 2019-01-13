@@ -189,6 +189,11 @@ export const App = () => {
           <NavLink to="/about">
             <span className="icon-question-circle" />
           </NavLink>
+          <span onClick={_ => {
+            const auth_address = get_path(gsis, "res.auth_address");
+            const content_inner_path = "data/users/" + auth_address + "/content.json";
+            zframe.cmdp("sitePublish", { inner_path: content_inner_path, sign: true });
+          }}>publish</span>
         </div>
         <h2 className="logo">StarGate</h2>
       </div>
@@ -254,7 +259,7 @@ export const App = () => {
                       <a href={`http://localhost:8080/ipfs/${it.hash}`} download={it.name} rel="noopener noreferrer">
                         <span className="icon-download" />
                       </a>
-                      <span onClick={_ => set_editing_hash(it)} className="icon-pencil" />
+                      {get_path(gsis, "res.cert_user_id") === it.cert_user_id && <span onClick={_ => set_editing_hash(it)} className="icon-pencil" />}
                     </div>
                   </div>
                   <div className="desc">{it.desc}</div>
