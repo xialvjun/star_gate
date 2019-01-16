@@ -105,13 +105,14 @@ export const App = () => {
   const [is_help_showing, set_is_help_showing] = useState(false);
   const [editing_hash, set_editing_hash] = useState(null);
   const [get_site_info, gsis, set_gsis] = useApi(_ => zframe.cmdp("siteInfo"), []);
-  const [cert_select, certss, set_certss] = useApi(_ => zframe.cmdp("certSelect"));
+  const [cert_select, certss, set_certss] = useApi(_ => zframe.cmdp("certSelect", { accepted_domains: ["zeroid.bit", "cryptoid.bit"], accept_any: true }));
   const [q, set_q] = useState("");
   const debounced_set_q = useDebounce(set_q, 500);
   const [form_text, set_form_text] = useState(q);
-  const [search, searchs, set_searchs] = useApi(_ => zframe.cmdp("dbQuery", ["SELECT * FROM hashes LEFT JOIN json USING (json_id) ORDER BY updated_at DESC"]), [
-    q
-  ]);
+  const [search, searchs, set_searchs] = useApi(
+    _ => zframe.cmdp("dbQuery", { query: "SELECT * FROM hashes LEFT JOIN json USING (json_id) ORDER BY updated_at DESC" }),
+    []
+  );
 
   const [modify, modifys, set_modifys] = useApi(async (action, payload) => {
     if (action === "delete") {
@@ -185,15 +186,20 @@ export const App = () => {
               set_editing_hash(default_hash());
             }}
             className="icon-upload"
+            title="upload"
           />
           <NavLink to="/about">
-            <span className="icon-question-circle" />
+            <span className="icon-question-circle" title="about and help" />
           </NavLink>
-          <span onClick={_ => {
-            const auth_address = get_path(gsis, "res.auth_address");
-            const content_inner_path = "data/users/" + auth_address + "/content.json";
-            zframe.cmdp("sitePublish", { inner_path: content_inner_path, sign: true });
-          }}>publish</span>
+          <span
+            className="icon-feed"
+            title="republish: when you publish failed, you need it."
+            onClick={_ => {
+              const auth_address = get_path(gsis, "res.auth_address");
+              const content_inner_path = "data/users/" + auth_address + "/content.json";
+              zframe.cmdp("sitePublish", { inner_path: content_inner_path, sign: true });
+            }}
+          />
         </div>
         <h2 className="logo">StarGate</h2>
       </div>
@@ -227,7 +233,7 @@ export const App = () => {
                   <div className="row">
                     <span>
                       <NavLink className="name" to={`/hashes/${it.hash}`}>
-                        {it.name} {!!it.is_dir && <span className="icon-folder-open" />}
+                        {it.name} {!!it.is_dir && <span className="icon-folder-open" title="this is a directory" />}
                       </NavLink>
                     </span>
                     <span
@@ -254,12 +260,14 @@ export const App = () => {
                     </span>
                     <div className="operations">
                       <a href={`http://localhost:8080/ipfs/${it.hash}`} target="_blank" rel="noopener noreferrer">
-                        <span className="icon-link" />
+                        <span className="icon-link" title="open it in a new tab" />
                       </a>
                       <a href={`http://localhost:8080/ipfs/${it.hash}`} download={it.name} rel="noopener noreferrer">
-                        <span className="icon-download" />
+                        <span className="icon-download" title="download it" />
                       </a>
-                      {get_path(gsis, "res.cert_user_id") === it.cert_user_id && <span onClick={_ => set_editing_hash(it)} className="icon-pencil" />}
+                      {get_path(gsis, "res.cert_user_id") === it.cert_user_id && (
+                        <span onClick={_ => set_editing_hash(it)} className="icon-pencil" title="edit it" />
+                      )}
                     </div>
                   </div>
                   <div className="desc">{it.desc}</div>

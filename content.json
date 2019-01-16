@@ -1,72 +1,70 @@
 {
- "address": "17zvBL3FBNDSV5x7EoGv2LdFe473iw9dVZ",
- "address_index": 4975649,
- "background-color": "#FFF",
- "clone_root": "template-new",
- "cloned_from": "1HeLLo4uzjaLetFx6NH3PMwFP3qbRbTf3D",
- "description": "An IPFS Resources Site.",
- "files": {
-  "dbschema.json": {
-   "sha512": "fa82de8513f2d80f1d23608ca4c5d84ca197f2f35799cbafd6bacfb67a7073ae",
-   "size": 1006
+  "address": "17zvBL3FBNDSV5x7EoGv2LdFe473iw9dVZ",
+  "address_index": 4975649,
+  "background-color": "#FFF",
+  "description": "An IPFS Hash Sharing and Viewing Site.",
+  "files": {
+    "dbschema.json": {
+      "sha512": "fa82de8513f2d80f1d23608ca4c5d84ca197f2f35799cbafd6bacfb67a7073ae",
+      "size": 1006
+    },
+    "favicon.ico": {
+      "sha512": "ccfa917ff6e503f4c50dc8f2817b837bb3de1107449b663c8ad250b4e03fbf34",
+      "size": 1150
+    },
+    "index.html": {
+      "sha512": "a011ce4bd6f8e8c296940e03f49bc06c49ce9754c813255232c9c23a28c6c421",
+      "size": 2067
+    },
+    "manifest.json": {
+      "sha512": "bea380fcb94811e5c93661342a08b5bfee89656fc0ac869c5427a216b8b54f47",
+      "size": 306
+    },
+    "static/css/main.e6e42cdc.chunk.css": {
+      "sha512": "41e44b13a2e3152b3590a0d201a247448b2ed8bb8eb249da2ef89a4f62b158bf",
+      "size": 1642
+    },
+    "static/js/1.1fa4a6e3.chunk.js": {
+      "sha512": "2d1a8fbe7b21e78850fff986a76c40cf7d52ed25e0db47a55ecba79e005d1f3b",
+      "size": 175716
+    },
+    "static/js/main.b7f4c7b9.chunk.js": {
+      "sha512": "c0bfaa4e3b79e3582e2c67c09e78d0259c2fb960ab3ca5ecdb3902229fa0a79a",
+      "size": 14819
+    },
+    "static/media/icomoon.2285b8ef.ttf": {
+      "sha512": "40dc63b51d6d8fe8d5049d80a2d836f5359538dfbb6f0f863d7bc3662fa9f25b",
+      "size": 3024
+    },
+    "static/media/icomoon.8b7f71ad.svg": {
+      "sha512": "a5a2b171afe8510d022985e745ecbb75c1f240900110231e26ddddebb747635c",
+      "size": 6077
+    },
+    "static/media/icomoon.c83d96a8.eot": {
+      "sha512": "416d6627dfde8cf4235200a9010df6318524950ec3b335226e55e07fe0a22c3c",
+      "size": 3188
+    },
+    "static/media/icomoon.f1b9fa88.woff": {
+      "sha512": "26e59d54470ed39a3f6ab889c1ba1259c6b6761ea87de4ea208403b17825f2db",
+      "size": 3100
+    }
   },
-  "favicon.ico": {
-   "sha512": "ccfa917ff6e503f4c50dc8f2817b837bb3de1107449b663c8ad250b4e03fbf34",
-   "size": 1150
+  "ignore": ".git/.*|data/.*|stargate/.*",
+  "includes": {
+    "data/users/content.json": {
+      "signers": [],
+      "signers_required": 1
+    }
   },
-  "index.html": {
-   "sha512": "9cbdc2459b2e262cd0d25ca672e2de0d65b8a18377e86e44680e68a7a99d5296",
-   "size": 2067
+  "inner_path": "content.json",
+  "modified": 1547564706,
+  "postmessage_nonce_security": true,
+  "signers_sign": "HODgkRAeXMJTJCa76GDxOak8oFKVmWzQJJ5WjzB8g00VMgcAhB4NCiNowY7Rh8HQnhAjffrRcw5ILQB5QRV8smE=",
+  "signs": {
+    "17zvBL3FBNDSV5x7EoGv2LdFe473iw9dVZ": "G3KaDWqk13Pml9i7QCsdfgbdk4eCJho5+S7JQtoyI/5XTlcR2w7pZ0jgUQWsHI0o+hSwQIL0PSS0jK72OwgBEH4="
   },
-  "manifest.json": {
-   "sha512": "bea380fcb94811e5c93661342a08b5bfee89656fc0ac869c5427a216b8b54f47",
-   "size": 306
-  },
-  "static/css/main.86112947.chunk.css": {
-   "sha512": "7cc79f5126304dc3ee5cf5b89bc2b113fdb79df9d3de098ca93da7d0affffd3e",
-   "size": 1608
-  },
-  "static/js/1.1fa4a6e3.chunk.js": {
-   "sha512": "2d1a8fbe7b21e78850fff986a76c40cf7d52ed25e0db47a55ecba79e005d1f3b",
-   "size": 175716
-  },
-  "static/js/main.b55d9cbc.chunk.js": {
-   "sha512": "e79667c2db486fe23ef2f72929bebb60bd7a82f5a8ccd5a635879d1b6d76a6ee",
-   "size": 14393
-  },
-  "static/media/icomoon.72bf4537.eot": {
-   "sha512": "80f0c9d0135da75d358440844547f3b857705a358d00841a04fe43fb9584a972",
-   "size": 2836
-  },
-  "static/media/icomoon.872d24cd.ttf": {
-   "sha512": "1de0ea7ba7093d3a9aa807ce7c9d47d02222daa0b45f70bdaa906adf8e3451ca",
-   "size": 2672
-  },
-  "static/media/icomoon.bbcec7ad.svg": {
-   "sha512": "96b225575415fc9ef9a83218511455d4f91b192fa41115e582c126bf793d62e5",
-   "size": 5247
-  },
-  "static/media/icomoon.de3f0684.woff": {
-   "sha512": "a02ca71c0ec99ceeb8c625709fffe9f1ef6c388943f53dd01bae263af01885cb",
-   "size": 2748
-  }
- },
- "ignore": ".git/.*|data/.*|stargate/.*",
- "includes": {
-  "data/users/content.json": {
-   "signers": [],
-   "signers_required": 1
-  }
- },
- "inner_path": "content.json",
- "modified": 1547050541,
- "postmessage_nonce_security": true,
- "signers_sign": "HODgkRAeXMJTJCa76GDxOak8oFKVmWzQJJ5WjzB8g00VMgcAhB4NCiNowY7Rh8HQnhAjffrRcw5ILQB5QRV8smE=",
- "signs": {
-  "17zvBL3FBNDSV5x7EoGv2LdFe473iw9dVZ": "G57Hi2Ue2d++CjPPJtkj26Tj5o12LwSEOgFZTg9++Hj/GQBB9qeGIFJHp3M/DrCGkPz/qhKDku1taSrMK+U5JgQ="
- },
- "signs_required": 1,
- "title": "StarGate",
- "translate": ["js/all.js"],
- "zeronet_version": "0.6.4"
+  "signs_required": 1,
+  "title": "StarGate - IPFS Share and View",
+  "translate": ["js/all.js"],
+  "zeronet_version": "0.6.4"
 }
