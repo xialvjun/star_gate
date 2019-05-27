@@ -7,8 +7,8 @@
     "@xialvjun/create-react-style": "^0.8.3",
     "@xialvjun/is.js": "^0.0.3",
     "@xialvjun/react-element": "^0.0.9",
-    "react": "16.7.0-alpha.2",
-    "react-dom": "16.7.0-alpha.2",
+    "react": "16.8.0",
+    "react-dom": "16.8.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.2"
   },

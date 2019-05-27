@@ -39,12 +39,11 @@ const css_str = css`
   }
   .explorer {
     margin: 14px 14px 0 0;
-    width: 400px;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    form.search {
-      width: 350px;
+    width: 440px;
+    overflow-y: auto;
+    .search {
+      margin: 25px auto;
+      width: 360px;
       height: 40px;
       padding: 0 10px 0 20px;
       display: flex;
@@ -60,11 +59,13 @@ const css_str = css`
       }
     }
     ul.list {
-      width: 386px;
+      margin: 0 auto;
+      width: 400px;
       list-style: none;
       font-size: 12px;
       li {
-        margin: 14px;
+        padding: 14px;
+        transition: background .2s ease;
         span {
           cursor: pointer;
         }
@@ -80,8 +81,11 @@ const css_str = css`
             margin-left: 10px;
           }
         }
-        &:hover .operations {
-          opacity: 1;
+        &:hover {
+          background: #eee;
+          .operations {
+            opacity: 1;
+          }
         }
         .name {
           font-size: 16px;
@@ -205,7 +209,7 @@ export const App = () => {
       </div>
       <div className="main">
         <div className="explorer">
-          <form className="search">
+          <div className="search">
             <input
               value={form_text}
               onChange={e => {
@@ -214,7 +218,7 @@ export const App = () => {
               }}
             />
             <span className="icon-search" />
-          </form>
+          </div>
           <ul className="list">
             {(get_path(searchs, "res") || [])
               .filter(it =>
@@ -279,7 +283,7 @@ export const App = () => {
           <Switch>
             <Route
               path="/hashes/:hash"
-              render={({ location, history, match }) => <iframe src={`http://localhost:8080/ipfs/${match.params.hash}`} allowFullScreen />}
+              render={({ location, history, match }) => <iframe key={match.params.hash} src={`http://localhost:8080/ipfs/${match.params.hash}`} allowFullScreen />}
             />
             <Route path="/about" component={About} />
           </Switch>
